@@ -817,7 +817,11 @@ footer a:hover{color:var(--orange-light)}
   /* ── WhatsApp helpers ── */
   function abrirWA(msg) {
     const texto = msg || 'Olá! Vim pelo site e quero saber mais sobre os serviços do JS Montador.';
-    window.open('https://wa.me/' + TEL + '?text=' + encodeURIComponent(texto), '_blank');
+    const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    const base = isMobile
+      ? 'whatsapp://send?phone=' + TEL + '&text='
+      : 'https://api.whatsapp.com/send?phone=' + TEL + '&text=';
+    window.open(base + encodeURIComponent(texto), '_blank');
   }
 
   function fmt(d) {
