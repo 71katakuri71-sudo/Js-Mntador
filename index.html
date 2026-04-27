@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="google-site-verification" content="ZDHtXSHX_NpclZMTnjk6wPmcO5OdJ8ulSstPOLpuD-k" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>É JS Montador — Montagem e Reparos de Móveis</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -817,8 +818,7 @@ footer a:hover{color:var(--orange-light)}
   /* ── WhatsApp helpers ── */
   function abrirWA(msg) {
     const texto = msg || 'Olá! Vim pelo site e quero saber mais sobre os serviços do JS Montador.';
-    const url = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent(texto);
-    window.location.href = url;
+    window.open('https://wa.me/' + TEL + '?text=' + encodeURIComponent(texto), '_blank');
   }
 
   function fmt(d) {
@@ -856,7 +856,12 @@ footer a:hover{color:var(--orange-light)}
     if (obs)     msg += '\n💬 *Obs:* ' + obs + '\n';
     msg += '\nAguardo seu retorno! 😊';
 
-    abrirWA(msg);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+      abrirWA(msg);
+    }, 1000);
   }
 
   /* ── data mínima ── */
